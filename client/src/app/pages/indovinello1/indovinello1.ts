@@ -34,7 +34,7 @@ export class Indovinello1 {
     ].join(' | ');
 
     console.log(risposta);
-    // this.send(risposta);
+    this.send(risposta);
   }
   send(risposta: string) {
     this.emailService.send(risposta).then(
