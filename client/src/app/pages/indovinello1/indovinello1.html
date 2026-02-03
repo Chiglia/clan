@@ -1,0 +1,82 @@
+<div class="mx-2 mt-7">
+  <!-- Form iniziale -->
+  <div *ngIf="!showNextStep">
+    <h2 class="text-primary">
+      Oh no! Il campetto di carnevale è in pericolo! Dovete aiutarci a salvarlo!
+    </h2>
+    <form #form="ngForm" (ngSubmit)="submit(form)">
+      <label>
+        Prendetevi 5 minuti per scrivere le 5 qualità fondamentali
+        <span class="text-primary">affinchè una qualsiasi pattuglia logistica funzioni bene:</span>
+      </label>
+
+      <div class="mt-2 w-full">
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="risposta1"
+          name="risposta1"
+          class="mt-2 w-full"
+          required
+        />
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="risposta2"
+          name="risposta2"
+          class="mt-2 w-full"
+          required
+        />
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="risposta3"
+          name="risposta3"
+          class="mt-2 w-full"
+          required
+        />
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="risposta4"
+          name="risposta4"
+          class="mt-2 w-full"
+          required
+        />
+        <input
+          type="text"
+          pInputText
+          [(ngModel)]="risposta5"
+          name="risposta5"
+          class="mt-2 w-full"
+          required
+        />
+      </div>
+
+      <div class="mt-4">
+        <p-button type="submit" [disabled]="loading || !form.valid">
+          {{ loading ? '⏳ Invio...' : 'Invia' }}
+        </p-button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Loader -->
+  <div *ngIf="loading" class="mt-4">
+    <p>⏳ Inviando la tua risposta...</p>
+  </div>
+
+  <!-- Next step -->
+  <div *ngIf="showNextStep" class="mt-7">
+    <p class="text-2xl font-bold text-green-500">✅ Risposta inviata!</p>
+    <p>Questo è il prossimo indizio:</p>
+    <!-- <img src="edicola.jpg" class="w-full mt-4" /> -->
+
+    <p>Partendo dal piazzale della chiesa</p>
+    <p>100m verso est</p>
+    <p>110m verso sud</p>
+    <p>50m verso est</p>
+
+    <p>(Raccogliete tutti gli indizi una volta trovati)</p>
+  </div>
+</div>

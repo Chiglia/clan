@@ -1,0 +1,62 @@
+<div class="mx-2 mt-7">
+  <!-- Form iniziale -->
+  <div *ngIf="!showNextStep">
+    <h2 class="text-primary">Eccovi, vi stavo aspettando!</h2>
+    <label>
+      Bravi, avete provato che vi sapete orientare, una qualità fondamentale per i membri della
+      pattuglia logistica.<br />
+      Ora vi trovate in un posto dove si prendono i biglietti dei vari mezzi, e OMMIODDIOH MA QUELLO
+      è WELIAN CHE SI è ROTTO UN PIEDE !?!!!?! Lui deve tornare a casa adesso dalla route!
+      (Mannaggia) Beh insomma lui deve partire proprio da quella fermata dove siete adesso e deve
+      andare fino a Via Due Palazzi.
+      <span class="text-primary"> Voi che siete logistici sapete che linea deve prendere?</span>
+    </label>
+
+    <div *ngIf="loading2" class="w-full flex flex-wrap mt-4 relative">
+      <div
+        *ngIf="loading"
+        class="absolute top-0 left-0 w-full h-full flex align-items-center justify-content-center z-5"
+      >
+        <i class="pi pi-spin pi-spinner text-7xl"></i>
+      </div>
+      <div class="col-6">
+        <p-button styleClass="w-full p-5" (onClick)="risposta(false)" [disabled]="loading">
+          Linea 14
+        </p-button>
+      </div>
+      <div class="col-6">
+        <p-button styleClass="w-full p-5" (onClick)="risposta(true)" [disabled]="loading">
+          Linea 11
+        </p-button>
+      </div>
+      <div class="col-6">
+        <p-button styleClass="w-full p-5" (onClick)="risposta(false)" [disabled]="loading">
+          Linea 16
+        </p-button>
+      </div>
+      <div class="col-6">
+        <p-button styleClass="w-full p-5" (onClick)="risposta(false)" [disabled]="loading">
+          Linea 7
+        </p-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sbagliata -->
+  <div *ngIf="sbagliata" class="mt-4 text-center text-primary text-2xl font-bold">
+    <p>Risposta sbagliata!</p>
+  </div>
+
+  <!-- Next step -->
+  <div *ngIf="showNextStep" class="mt-7">
+    <p class="text-2xl font-bold text-green-500">✅ Risposta corretta!</p>
+    <p class="text-xl text-green-500">
+      Avete salvato Welian! Ora dopo tanti anni è diventato adulto e ha una sua famiglia con dei
+      suoi bambini
+    </p>
+    <p>Questo è il prossimo indizio:</p>
+    <img src="mezzabati.jpg" class="w-full mt-4" />
+
+    <p>(Raccogliete tutti gli indizi una volta trovati)</p>
+  </div>
+</div>

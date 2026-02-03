@@ -1,0 +1,37 @@
+<div class="mx-2 mt-7">
+  <!-- Form iniziale -->
+  <div *ngIf="!showNextStep">
+    <h2 class="text-primary">Logistics master</h2>
+    <p>
+      Va bene, ora le cose diventano difficili. Sapete qual è, in assoluto, la cosa più difficile
+      dell’essere un membro della pattuglia logistica?
+    </p>
+
+    <p-button label="Certoh" styleClass="my-4" (onClick)="certoh()" />
+
+    <div *ngIf="loading">
+      <p>
+        Esatto, bravi. La cosa più difficile è che, nonostante si abbia sbagliato strada, nonostante
+        si sia stanchi morti e affamati, bisogna sempre
+        <span class="text-2xl">MANTENERE IL MORALE ALTO!</span>
+        <br /><br />
+        Se tra tutti quelli del clan mostrate disperazione, tutto il clan cadrà con voi. Per questo
+        non bisogna mai abbattersi, ma trovare sempre un altro sentiero per arrivare a destinazione.
+      </p>
+
+      <p-button label="Hai ragione!" styleClass="my-4" (onClick)="certoh2()" />
+      <div *ngIf="loading2">
+        <p>
+          Grazie! Ora immaginatevi di aver sbagliato strada… o addirittura di aver perso il treno!
+          Dovete mantenere alto il morale del clan.
+          <span class="text-primary font-semibold">
+            Imparate una coreografia, un TikTok o qualsiasi cosa e mandatela sul gruppo del clan per
+            tirare su il morale in questa giornata un po’ umida 😅
+          </span>
+          <br /><br />
+          (Vi arriveranno info appena arriva il videoo)
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
