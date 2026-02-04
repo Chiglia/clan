@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { afterNextRender, Component, NgZone, OnInit } from '@angular/core';
 import { SharedModule } from '../../../shared.module';
 import { Ragazzo } from '../../interfaces/ragazzo';
 import { RagazziService } from '../../services/ragazzi.service';
@@ -14,13 +14,19 @@ export class Ppu implements OnInit {
   ragazzi: Ragazzo[] = [];
   loading = true;
 
-  constructor(public ragazziService: RagazziService) {}
-
-  async ngOnInit() {
-    this.loading = true;
-    this.ragazzi = await this.ragazziService.getAllRagazzi();
-    await new Promise((r) => setTimeout(r, 200));
-    this.loading = false;
-    console.log(this.ragazzi);
+  constructor(
+    public ragazziService: RagazziService,
+    private ngZone: NgZone,
+  ) {
+    afterNextRender(async () => {
+      const data = await this.ragazziService.getAllRagazzi();
+      await new Promise((r) => setTimeout(r, 300));
+      this.ngZone.run(() => {
+        this.ragazzi = data;
+        this.loading = false;
+      });
+    });
   }
+
+  ngOnInit() {}
 }
