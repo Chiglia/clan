@@ -8,13 +8,13 @@ import { supabase } from './supabase.service';
 export class RagazziService {
   async getAllRagazzi(): Promise<Ragazzo[]> {
     const { data, error } = await supabase.from('Ragazzi').select('*');
-    console.log(data);
-
     if (error) throw error;
     return data ?? [];
   }
 
-  getRagazzoByNome(nome: string) {
-    return supabase.from('Ragazzi').select('*').eq('nome', nome);
+  async getRagazzoByNome(nome: string): Promise<Ragazzo> {
+    const { data, error } = await supabase.from('Ragazzi').select('*').eq('nome', nome);
+    if (error) throw error;
+    return data?.[0] ?? null;
   }
 }

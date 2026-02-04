@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { EmailService } from '../../services/email.service';
-import { SharedModule } from '../../../shared.module';
+import { EmailService } from '../../../services/email.service';
 import { InputTextModule } from 'primeng/inputtext';
+import { SharedModule } from '../../../../shared.module';
 
 @Component({
   selector: 'app-indovinello1',

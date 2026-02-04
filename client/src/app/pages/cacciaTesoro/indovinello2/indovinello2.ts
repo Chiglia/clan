@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EmailService } from '../../services/email.service';
-import { SharedModule } from '../../../shared.module';
+import { EmailService } from '../../../services/email.service';
+import { SharedModule } from '../../../../shared.module';
 
 @Component({
   selector: 'app-indovinello2',
