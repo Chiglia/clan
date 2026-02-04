@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { SharedModule } from '../../../shared.module';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-not-found',
   imports: [SharedModule],
-  templateUrl: './home.html',
+  templateUrl: './not-found.html',
   styles: ``,
 })
-export class Home {}
+export class NotFound {}

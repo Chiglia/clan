@@ -1,0 +1,25 @@
+<div>
+  <h1 class="text-primary text-4xl text-center mt-6">Progressione Personale Unitaria</h1>
+
+  <div class="grid justify-content-center">
+    @if (loading) {
+      @for (i of [1, 2, 3, 4, 5, 6]; track $index) {
+        <div class="col-6 lg:col-3">
+          <p-skeleton height="11rem"></p-skeleton>
+        </div>
+      }
+    } @else {
+      @for (ragazzo of ragazzi; track $index) {
+        <div class="col-6 lg:col-3">
+          <p-button
+            label="{{ ragazzo.nome }}"
+            [routerLink]="['/dettaglioRagazzo', ragazzo.nome]"
+            styleClass="w-full h-11rem border-round-3xl text-xl surface-50"
+            severity="secondary"
+          >
+          </p-button>
+        </div>
+      }
+    }
+  </div>
+</div>
