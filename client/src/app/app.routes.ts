@@ -9,6 +9,7 @@ import { DettaglioRagazzo } from './pages/dettaglio-ragazzo/dettaglio-ragazzo';
 import { Ruoli } from './pages/ruoli/ruoli';
 import { Canzoniere } from './pages/canzoniere/canzoniere';
 import { CartaDiClan } from './pages/carta-di-clan/carta-di-clan';
+import { Verbali } from './pages/verbali/verbali';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,10 @@ export const routes: Routes = [
   {
     path: 'cartaDiClan',
     component: CartaDiClan,
+  },
+  {
+    path: 'verbali',
+    component: Verbali,
   },
   {
     path: '**',
