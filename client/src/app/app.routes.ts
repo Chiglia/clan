@@ -1,45 +1,67 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
-import { Indovinello1 } from './pages/cacciaTesoro/indovinello1/indovinello1';
-import { Indovinello2 } from './pages/cacciaTesoro/indovinello2/indovinello2';
-import { Indovinello3 } from './pages/cacciaTesoro/indovinello3/indovinello3';
 import { Ppu } from './pages/ppu/ppu';
-import { NotFound } from './pages/not-found/not-found';
+import { NotFound } from './pages/error/not-found/not-found';
 import { DettaglioRagazzo } from './pages/dettaglio-ragazzo/dettaglio-ragazzo';
 import { Ruoli } from './pages/ruoli/ruoli';
 import { Canzoniere } from './pages/canzoniere/canzoniere';
 import { CartaDiClan } from './pages/carta-di-clan/carta-di-clan';
 import { Verbali } from './pages/verbali/verbali';
+import { authGuard } from './auth/supabase.guard';
+import { Login } from './pages/auth/login/login';
+import { ToDo } from './pages/to-do/to-do';
+import { AccessDenied } from './pages/error/access-denied/access-denied';
+import { AccessDeniedGuard } from './auth/access-denied.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    component: Home,
-    pathMatch: 'full',
+    canActivate: [AccessDeniedGuard],
+    children: [
+      {
+        path: '',
+        component: Home,
+      },
+      {
+        path: 'ppu',
+        canActivate: [authGuard],
+        component: Ppu,
+      },
+      {
+        path: 'dettaglioRagazzo/:nome',
+        canActivate: [authGuard],
+        component: DettaglioRagazzo,
+      },
+      {
+        path: 'todo',
+        canActivate: [authGuard],
+        component: ToDo,
+      },
+      {
+        path: 'ruoli',
+        component: Ruoli,
+      },
+      {
+        path: 'canzoniere',
+        component: Canzoniere,
+      },
+      {
+        path: 'cartaDiClan',
+        component: CartaDiClan,
+      },
+      {
+        path: 'verbali',
+        component: Verbali,
+      },
+      {
+        path: 'login',
+        component: Login,
+      },
+    ],
   },
   {
-    path: 'ppu',
-    component: Ppu,
-  },
-  {
-    path: 'dettaglioRagazzo/:nome',
-    component: DettaglioRagazzo,
-  },
-  {
-    path: 'ruoli',
-    component: Ruoli,
-  },
-  {
-    path: 'canzoniere',
-    component: Canzoniere,
-  },
-  {
-    path: 'cartaDiClan',
-    component: CartaDiClan,
-  },
-  {
-    path: 'verbali',
-    component: Verbali,
+    path: 'access-denied',
+    component: AccessDenied,
   },
   {
     path: '**',

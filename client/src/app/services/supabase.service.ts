@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { createClient } from '@supabase/supabase-js';
-import { Ragazzo } from '../interfaces/ragazzo';
 
 export const supabase = createClient(
   'https://vpxazjyqghrpdcsohipw.supabase.co',
@@ -11,7 +10,29 @@ export const supabase = createClient(
   providedIn: 'root',
 })
 export class SupabaseService {
-  add(nome: string) {
-    return supabase.from('Ragazzi').insert({ nome });
+  isLoggedIn = signal(false);
+
+  loginWithGoogle() {
+    return supabase.auth.signInWithOAuth({
+      provider: 'google',
+    });
+  }
+
+  constructor() {
+    this.init();
+  }
+
+  async init() {
+    const { data } = await supabase.auth.getSession();
+    this.isLoggedIn.set(!!data.session);
+  }
+
+  async logout() {
+    await supabase.auth.signOut();
+    window.location.reload();
+  }
+
+  getSession() {
+    return supabase.auth.getSession();
   }
 }

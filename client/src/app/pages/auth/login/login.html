@@ -1,0 +1,25 @@
+<div class="min-h-screen flex align-items-center justify-content-center bg-gray-100 px-3">
+  <p-card class="w-full sm:w-30rem shadow-4 border-round-xl">
+    <div class="text-center mb-4">
+      <h2 class="text-2xl font-semibold mb-2">Bentornato 👋</h2>
+      <p class="text-color-secondary">Accedi per continuare</p>
+    </div>
+
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Accedi con Google"
+      icon="pi pi-google"
+      class="w-full p-button-lg"
+      (click)="login()"
+    ></button>
+
+    <p-divider class="my-4"></p-divider>
+
+    <p class="text-xs text-center text-color-secondary line-height-3">
+      Effettuando l’accesso accetti i termini di servizio<br />
+      e l’informativa sulla privacy
+    </p>
+  </p-card>
+</div>

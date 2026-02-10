@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { Nav } from './pages/common-components/nav/nav';
+import { SupabaseService } from './services/supabase.service';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +14,19 @@ import { Nav } from './pages/common-components/nav/nav';
   `,
   styles: [],
 })
-export class App {}
+export class App implements OnInit {
+  supaServ = inject(SupabaseService);
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      if (params['error'] === 'access_denied') {
+        this.router.navigate(['/access-denied']);
+      }
+    });
+  }
+}

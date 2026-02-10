@@ -17,4 +17,8 @@ export class RagazziService {
     if (error) throw error;
     return data?.[0] ?? null;
   }
+
+  addRagazzo(nome: string) {
+    return supabase.from('Ragazzi').insert({ nome });
+  }
 }

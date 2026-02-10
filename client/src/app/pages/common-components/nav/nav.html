@@ -14,6 +14,10 @@
       <p-button [routerLink]="item.link" [label]="item.label" variant="text" />
     }
     <p-button severity="contrast" [rounded]="true" icon="pi pi-moon" (click)="toggleTheme()" />
+
+    @if (supabaseService.isLoggedIn()) {
+      <p-button severity="contrast" [rounded]="true" icon="pi pi-sign-out" (click)="logout()" />
+    }
   </div>
 
   <!-- Icona mobile -->
@@ -34,5 +38,8 @@
       (click)="toggleTheme()"
       class="p-button-rounded p-button-text mr-2"
     />
+    @if (supabaseService.isLoggedIn()) {
+      <p-button severity="contrast" [rounded]="true" icon="pi pi-sign-out" (click)="logout()" />
+    }
   </div>
 </p-drawer>

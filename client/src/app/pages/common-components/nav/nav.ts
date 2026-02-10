@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DrawerModule } from 'primeng/drawer';
 import { SharedModule } from '../../../../shared.module';
 import { ThemeService } from '../../../services/theme.service';
+import { SupabaseService } from '../../../services/supabase.service';
 
 @Component({
   selector: 'app-nav',
@@ -19,9 +20,16 @@ export class Nav {
 
   menuVisible = false;
 
-  constructor(public themeService: ThemeService) {}
+  constructor(
+    public themeService: ThemeService,
+    public supabaseService: SupabaseService,
+  ) {}
 
   toggleTheme() {
     this.themeService.toggle();
+  }
+
+  logout() {
+    this.supabaseService.logout();
   }
 }
