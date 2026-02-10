@@ -3,22 +3,6 @@
   <div class="flex flex-wrap w-full">
     <div class="col-6">
       <p-button
-        label="PPU"
-        icon="pi pi-compass"
-        routerLink="/ppu"
-        styleClass="w-full p-4"
-      ></p-button>
-    </div>
-    <div class="col-6">
-      <p-button
-        label="To Do List"
-        icon="pi pi-list-check"
-        routerLink="/todo"
-        styleClass="w-full p-4"
-      ></p-button>
-    </div>
-    <div class="col-6">
-      <p-button
         label="Verbali"
         icon="pi pi-book"
         routerLink="/verbali"
@@ -48,6 +32,28 @@
         routerLink="/cartaDiClan"
         styleClass="w-full p-4"
       ></p-button>
+    </div>
+    <div class="col-6">
+      <p-button
+        label="PPU"
+        icon="pi pi-compass"
+        severity="secondary"
+        routerLink="/ppu"
+        styleClass="w-full p-4"
+      >
+        <span class="pi pi-lock font-bold text-5xl absolute" style="opacity: 45%"></span>
+      </p-button>
+    </div>
+    <div class="col-6">
+      <p-button
+        label="To Do List"
+        severity="secondary"
+        icon="pi pi-list-check"
+        routerLink="/todo"
+        styleClass="w-full p-4"
+      >
+        <span class="pi pi-lock font-bold text-5xl absolute" style="opacity: 45%"></span>
+      </p-button>
     </div>
   </div>
 </div>

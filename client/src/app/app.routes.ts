@@ -12,6 +12,7 @@ import { Login } from './pages/auth/login/login';
 import { ToDo } from './pages/to-do/to-do';
 import { AccessDenied } from './pages/error/access-denied/access-denied';
 import { AccessDeniedGuard } from './auth/access-denied.guard';
+import { User } from './pages/user/user';
 
 export const routes: Routes = [
   {
@@ -56,6 +57,11 @@ export const routes: Routes = [
       {
         path: 'login',
         component: Login,
+      },
+      {
+        path: 'user',
+        canActivate: [authGuard],
+        component: User,
       },
     ],
   },

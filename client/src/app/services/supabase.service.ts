@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, UserMetadata } from '@supabase/supabase-js';
+import { User } from '../interfaces/user';
 
 export const supabase = createClient(
   'https://vpxazjyqghrpdcsohipw.supabase.co',
@@ -11,6 +12,9 @@ export const supabase = createClient(
 })
 export class SupabaseService {
   isLoggedIn = signal(false);
+  private _user = signal<User | undefined>(undefined);
+
+  user = this._user.asReadonly();
 
   loginWithGoogle() {
     return supabase.auth.signInWithOAuth({
@@ -20,6 +24,11 @@ export class SupabaseService {
 
   constructor() {
     this.init();
+    this.loadUser();
+
+    supabase.auth.onAuthStateChange(() => {
+      this.loadUser();
+    });
   }
 
   async init() {
@@ -34,5 +43,29 @@ export class SupabaseService {
 
   getSession() {
     return supabase.auth.getSession();
+  }
+
+  private async loadUser(): Promise<void> {
+    const { data } = await supabase.auth.getUser();
+
+    if (!data.user) {
+      this._user.set(undefined);
+      this.isLoggedIn.set(false);
+      return;
+    }
+
+    const meta: UserMetadata = data.user.user_metadata;
+
+    this._user.set({
+      avatar_url: meta['avatar_url'],
+      email: meta['email'] ?? '',
+      email_verified: meta['email_verified'],
+      full_name: meta['full_name'],
+      name: meta['name'],
+      phone_verified: meta['phone_confirmed_at'],
+      picture: meta['picture'],
+    });
+
+    this.isLoggedIn.set(true);
   }
 }
