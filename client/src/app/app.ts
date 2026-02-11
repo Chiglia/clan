@@ -14,19 +14,11 @@ import { SupabaseService } from './services/supabase.service';
   `,
   styles: [],
 })
-export class App implements OnInit {
+export class App {
   supaServ = inject(SupabaseService);
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
   ) {}
-
-  ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      if (params['error'] === 'access_denied') {
-        this.router.navigate(['/access-denied']);
-      }
-    });
-  }
 }

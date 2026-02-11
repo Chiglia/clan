@@ -1,2 +1,9 @@
-<p>user works!</p>
-<p-button label="Logout" (click)="logout()"></p-button>
+<div class="flex flex-column items-center align-items-center gap-4 p-4 mt-4">
+  <p-avatar [image]="supabaseService.user()?.avatar_url" shape="circle" size="xlarge" />
+  <h1 class="text-2xl font-bold">{{ supabaseService.user()?.full_name }}</h1>
+  <h1 class="text-2xl font-bold">{{ supabaseService.user()?.email }}</h1>
+  <h1 class="text-2xl font-bold">{{ supabaseService.user()?.email_verified }}</h1>
+  <h1 class="text-2xl font-bold">{{ supabaseService.user()?.name }}</h1>
+  <h1 class="text-2xl font-bold">{{ supabaseService.user()?.phone_verified }}</h1>
+  <p-button label="Logout" (click)="logout()"></p-button>
+</div>
